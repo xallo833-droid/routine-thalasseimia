@@ -1,0 +1,1638 @@
+<!DOCTYPE html>
+<html lang="ckb" dir="rtl">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ڕۆتینەکانی ژیان - بەرەو خەونەکان</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:'Inter','Segoe UI',Tahoma,sans-serif;
+    background:#0f0e13;
+
+    background-image:
+        radial-gradient(
+            ellipse at 20% 50%,
+            rgba(72,49,212,.15),
+            transparent 60%
+        ),
+        radial-gradient(
+            ellipse at 80% 20%,
+            rgba(120,80,220,.10),
+            transparent 50%
+        ),
+        radial-gradient(
+            ellipse at 50% 100%,
+            rgba(40,20,120,.20),
+            transparent 50%
+        );
+
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:20px;
+}
+
+.container{
+    max-width:580px;
+    width:100%;
+
+    background:rgba(255,255,255,.05);
+
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+
+    border-radius:40px;
+
+    padding:30px 24px 40px;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    box-shadow:
+        0 40px 80px rgba(0,0,0,.5),
+        inset 0 1px 0 rgba(255,255,255,.05);
+
+    position:relative;
+    overflow:hidden;
+}
+
+.container::before{
+    content:"";
+
+    position:absolute;
+
+    top:-50%;
+    left:-50%;
+
+    width:200%;
+    height:200%;
+
+    background:
+        radial-gradient(
+            circle at 30% 20%,
+            rgba(120,80,255,.03),
+            transparent 60%
+        );
+
+    pointer-events:none;
+}
+
+.glow-orb{
+    position:absolute;
+
+    border-radius:50%;
+
+    filter:blur(80px);
+
+    pointer-events:none;
+}
+
+.glow-orb-1{
+    width:200px;
+    height:200px;
+
+    top:-60px;
+    right:-60px;
+
+    background:rgba(120,80,255,.15);
+}
+
+.glow-orb-2{
+    width:150px;
+    height:150px;
+
+    bottom:-40px;
+    left:-40px;
+
+    background:rgba(255,100,150,.10);
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+h1{
+    font-size:30px;
+
+    text-align:center;
+
+    color:#fff;
+
+    font-weight:700;
+
+    margin-bottom:6px;
+
+    position:relative;
+
+    z-index:1;
+}
+
+.highlight{
+    background:
+        linear-gradient(
+            135deg,
+            #a78bfa,
+            #818cf8
+        );
+
+    -webkit-background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+}
+
+.subhead{
+    text-align:center;
+
+    color:rgba(255,255,255,.4);
+
+    font-size:13px;
+
+    margin-bottom:25px;
+
+    padding-bottom:14px;
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.05);
+
+    position:relative;
+
+    z-index:1;
+}
+
+
+/* =========================
+   PROGRESS
+========================= */
+
+.progress-wrap{
+    background:
+        rgba(255,255,255,.05);
+
+    border-radius:40px;
+
+    height:6px;
+
+    margin:20px 0 8px;
+
+    overflow:hidden;
+
+    position:relative;
+
+    z-index:1;
+}
+
+.progress-fill{
+    height:100%;
+
+    width:0%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #a78bfa,
+            #818cf8,
+            #6366f1
+        );
+
+    border-radius:40px;
+
+    transition:
+        width .5s ease;
+
+    box-shadow:
+        0 0 20px
+        rgba(120,80,255,.3);
+}
+
+.progress-label{
+    display:flex;
+
+    justify-content:space-between;
+
+    font-size:11px;
+
+    color:
+        rgba(255,255,255,.3);
+
+    position:relative;
+
+    z-index:1;
+}
+
+
+/* =========================
+   TASK
+========================= */
+
+.task-area{
+    margin-top:30px;
+
+    position:relative;
+
+    z-index:1;
+}
+
+.task-card{
+
+    background:
+        rgba(255,255,255,.04);
+
+    backdrop-filter:blur(10px);
+
+    border-radius:28px;
+
+    padding:30px 22px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.06);
+
+    text-align:center;
+
+    animation:
+        taskIn .45s ease;
+}
+
+.task-number{
+
+    font-size:12px;
+
+    color:
+        rgba(255,255,255,.3);
+
+    margin-bottom:20px;
+}
+
+.task-emoji{
+
+    font-size:60px;
+
+    margin-bottom:15px;
+
+    animation:
+        floatEmoji 2s ease-in-out infinite;
+}
+
+.task-group{
+
+    display:inline-block;
+
+    background:
+        rgba(120,80,255,.12);
+
+    color:#a78bfa;
+
+    padding:6px 18px;
+
+    border-radius:30px;
+
+    font-size:12px;
+
+    margin-bottom:22px;
+}
+
+.task-text{
+
+    font-size:22px;
+
+    font-weight:600;
+
+    color:
+        rgba(255,255,255,.9);
+
+    line-height:1.8;
+
+    margin-bottom:25px;
+}
+
+.complete-btn{
+
+    width:100%;
+
+    border:none;
+
+    padding:17px;
+
+    border-radius:40px;
+
+    font-size:17px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    font-family:inherit;
+
+    color:#fff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7c3aed,
+            #6366f1
+        );
+
+    box-shadow:
+        0 10px 30px
+        rgba(99,102,241,.25);
+
+    transition:.25s;
+}
+
+.complete-btn:hover{
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 15px 40px
+        rgba(99,102,241,.4);
+}
+
+.complete-btn:active{
+
+    transform:
+        scale(.97);
+}
+
+
+/* =========================
+   FINISHED
+========================= */
+
+.finished{
+
+    text-align:center;
+
+    padding:35px 20px;
+
+    animation:
+        taskIn .5s ease;
+}
+
+.finished-icon{
+
+    font-size:70px;
+
+    margin-bottom:15px;
+}
+
+.finished-title{
+
+    font-size:26px;
+
+    color:#fff;
+
+    font-weight:700;
+
+    margin-bottom:10px;
+}
+
+.finished-text{
+
+    color:
+        rgba(255,255,255,.4);
+
+    font-size:14px;
+
+    line-height:2;
+}
+
+
+/* =========================
+   DHIKR
+========================= */
+
+.toast{
+
+    position:fixed;
+
+    bottom:30px;
+
+    left:50%;
+
+    transform:
+        translateX(-50%)
+        translateY(30px);
+
+    background:
+        rgba(20,18,30,.97);
+
+    backdrop-filter:blur(30px);
+
+    color:#fff;
+
+    padding:20px 30px;
+
+    border-radius:25px;
+
+    z-index:999;
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transition:.5s;
+
+    text-align:center;
+
+    max-width:90%;
+
+    border:
+        1px solid
+        rgba(255,255,255,.06);
+
+    box-shadow:
+        0 20px 60px
+        rgba(0,0,0,.5);
+}
+
+.toast.show{
+
+    opacity:1;
+
+    transform:
+        translateX(-50%)
+        translateY(0);
+}
+
+.dhikr-text{
+
+    font-size:26px;
+
+    font-weight:700;
+
+    color:#fbbf24;
+
+    line-height:1.8;
+
+    direction:rtl;
+}
+
+
+/* =========================
+   REPORT
+========================= */
+
+.report-card{
+
+    margin-top:25px;
+
+    padding:25px;
+
+    border-radius:25px;
+
+    text-align:center;
+
+    background:
+        rgba(255,255,255,.04);
+
+    border:
+        1px solid
+        rgba(255,255,255,.06);
+
+    animation:
+        taskIn .5s ease;
+}
+
+.report-icon{
+
+    font-size:50px;
+
+    margin-bottom:10px;
+}
+
+.report-title{
+
+    color:#fff;
+
+    font-size:22px;
+
+    font-weight:700;
+}
+
+.report-percent{
+
+    font-size:48px;
+
+    font-weight:700;
+
+    color:#a78bfa;
+
+    margin:15px 0;
+}
+
+.report-text{
+
+    color:
+        rgba(255,255,255,.4);
+
+    font-size:13px;
+
+    line-height:2;
+}
+
+.reset-btn{
+
+    width:100%;
+
+    margin-top:20px;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:40px;
+
+    background:
+        rgba(255,255,255,.07);
+
+    color:#fff;
+
+    font-family:inherit;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    transition:.3s;
+}
+
+.reset-btn:hover{
+
+    background:
+        rgba(255,255,255,.12);
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer{
+
+    margin-top:35px;
+
+    text-align:center;
+
+    border-top:
+        1px solid
+        rgba(255,255,255,.05);
+
+    padding-top:22px;
+
+    position:relative;
+
+    z-index:1;
+}
+
+.dream-text{
+
+    font-size:19px;
+
+    font-weight:700;
+
+    color:#a78bfa;
+
+    margin-bottom:10px;
+}
+
+.reminder{
+
+    font-size:14px;
+
+    color:
+        rgba(255,255,255,.4);
+
+    margin-bottom:5px;
+}
+
+.strong{
+
+    font-size:16px;
+
+    color:
+        rgba(255,255,255,.6);
+
+    font-weight:600;
+}
+
+.sleep-text{
+
+    font-size:13px;
+
+    color:
+        rgba(255,255,255,.25);
+
+    margin-top:7px;
+}
+
+.credit{
+
+    font-size:10px;
+
+    color:
+        rgba(255,255,255,.12);
+
+    margin-top:10px;
+}
+
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes taskIn{
+
+    from{
+        opacity:0;
+        transform:translateY(20px) scale(.98);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+@keyframes floatEmoji{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-6px);
+    }
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:480px){
+
+    body{
+        padding:12px;
+    }
+
+    .container{
+
+        padding:
+            22px 16px 30px;
+
+        border-radius:28px;
+    }
+
+    h1{
+        font-size:25px;
+    }
+
+    .task-card{
+        padding:28px 18px;
+    }
+
+    .task-emoji{
+        font-size:50px;
+    }
+
+    .task-text{
+        font-size:19px;
+    }
+
+    .complete-btn{
+        font-size:15px;
+    }
+
+    .toast{
+        bottom:20px;
+        padding:17px 22px;
+    }
+
+    .dhikr-text{
+        font-size:22px;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     DHIKR
+========================= -->
+
+<div
+    class="toast"
+    id="dhikrToast">
+
+    <div
+        class="dhikr-text"
+        id="dhikrText">
+    </div>
+
+</div>
+
+
+<div class="container">
+
+
+    <div class="glow-orb glow-orb-1"></div>
+
+    <div class="glow-orb glow-orb-2"></div>
+
+
+    <!-- HEADER -->
+
+    <h1>
+        🌙
+        <span class="highlight">
+            ڕۆتینەکانی ژیان
+        </span>
+    </h1>
+
+    <div class="subhead">
+        دانە بە دانە · بەرەو خەونەکان
+    </div>
+
+
+    <!-- PROGRESS -->
+
+    <div class="progress-wrap">
+
+        <div
+            class="progress-fill"
+            id="progressFill">
+        </div>
+
+    </div>
+
+
+    <div class="progress-label">
+
+        <span>
+            پڕۆگرێسی ڕۆژ
+        </span>
+
+        <span id="progressText">
+            ٠٪
+        </span>
+
+    </div>
+
+
+    <!--
+        تەنها ئەم شوێنە
+        ئەرکی ئێستا پیشان دەدات
+    -->
+
+    <div
+        class="task-area"
+        id="taskArea">
+    </div>
+
+
+    <!-- REPORT -->
+
+    <div
+        id="reportArea">
+    </div>
+
+
+    <!-- FOOTER -->
+
+    <div class="footer">
+
+        <div class="dream-text">
+            ✨ من ژیان دەکەم بۆ بەدەستهێنانی خەونەکانم ✨
+        </div>
+
+        <div class="reminder">
+            💊 چارەسەرەکانم لە بیر ناکەم
+        </div>
+
+        <div class="strong">
+            💪 تۆ بەهێزیت!
+        </div>
+
+        <div class="sleep-text">
+            😴 زوو خەوتن بەشێکە لە تەندروستیم
+        </div>
+
+        <div class="credit">
+            run by Muhamad Surchi
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+/* =====================================================
+   DAYFLOW
+   ===================================================== */
+
+(function(){
+
+
+/* =====================================================
+   زکرەکان
+   تەنها بە عەرەبی
+===================================================== */
+
+const DHIKR_LIST = [
+
+    "سُبْحَانَ اللَّهِ",
+
+    "الْحَمْدُ لِلَّهِ",
+
+    "لَا إِلَٰهَ إِلَّا اللَّهُ",
+
+    "اللَّهُ أَكْبَرُ",
+
+    "لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ",
+
+    "سُبْحَانَ اللَّهِ وَبِحَمْدِهِ",
+
+    "أَسْتَغْفِرُ اللَّهَ",
+
+    "سُبْحَانَ اللَّهِ الْعَظِيمِ",
+
+    "اللَّهُمَّ صَلِّ عَلَىٰ مُحَمَّدٍ",
+
+    "لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ"
+
+];
+
+
+let lastDhikr = -1;
+
+
+function showDhikr(){
+
+    let index;
+
+    do{
+
+        index =
+            Math.floor(
+                Math.random() *
+                DHIKR_LIST.length
+            );
+
+    }while(
+        index === lastDhikr
+    );
+
+    lastDhikr = index;
+
+
+    document.getElementById(
+        "dhikrText"
+    ).textContent =
+        DHIKR_LIST[index];
+
+
+    const toast =
+        document.getElementById(
+            "dhikrToast"
+        );
+
+
+    toast.classList.add("show");
+
+
+    clearTimeout(
+        toast._timer
+    );
+
+
+    toast._timer =
+        setTimeout(function(){
+
+            toast.classList.remove(
+                "show"
+            );
+
+        },3000);
+
+}
+
+
+/* =====================================================
+   ئەرکەکان
+   گرنگ:
+   تەنها ئەم لیستەیە بەکاردهێنرێت.
+   هیچ کاتژمێری نوێژ نییە.
+===================================================== */
+
+const TASKS = [
+
+    {
+        id:"wake",
+        emoji:"🌞",
+        label:"بەیانی باش! زەردەخەنە بکە",
+        group:"بەیانی"
+    },
+
+    {
+        id:"bed",
+        emoji:"🛏️",
+        label:"جێخەو ڕێکبخە",
+        group:"بەیانی"
+    },
+
+    {
+        id:"shower1",
+        emoji:"🚿",
+        label:"خۆشوشتن",
+        group:"بەیانی"
+    },
+
+    {
+        id:"brush1",
+        emoji:"🪥",
+        label:"ددان شۆردن",
+        group:"بەیانی"
+    },
+
+    {
+        id:"water1",
+        emoji:"💧",
+        label:"یەک گڵاس ئاو بخۆ",
+        group:"بەیانی"
+    },
+
+    {
+        id:"fajr",
+        emoji:"🕌",
+        label:"نوێژی بەیانی بکە",
+        group:"بەیانی"
+    },
+
+    {
+        id:"pill_morning",
+        emoji:"💊",
+        label:"حەبەکانی بەیانی",
+        group:"بەیانی"
+    },
+
+    {
+        id:"breakfast",
+        emoji:"🍳",
+        label:"نانی بەیانی",
+        group:"بەیانی"
+    },
+
+    {
+        id:"book1",
+        emoji:"📖",
+        label:"کتێب — ١٠–٢٠ خولەک",
+        group:"بەیانی"
+    },
+
+    {
+        id:"sport",
+        emoji:"🏃",
+        label:"وەرزش — ٢٠–٣٠ خولەک",
+        group:"بەیانی"
+    },
+
+    {
+        id:"cleanup",
+        emoji:"🧼",
+        label:"پاکبوونەوە و ئامادەبوون",
+        group:"بەیانی"
+    },
+
+
+    {
+        id:"dhuhr",
+        emoji:"🕌",
+        label:"نوێژی نیوەڕۆ بکە",
+        group:"نیوەڕۆ"
+    },
+
+    {
+        id:"pill_noon",
+        emoji:"💊",
+        label:"حەبەکانی نیوەڕۆ",
+        group:"نیوەڕۆ"
+    },
+
+    {
+        id:"lunch",
+        emoji:"🍛",
+        label:"نانی نیوەڕۆ",
+        group:"نیوەڕۆ"
+    },
+
+    {
+        id:"water2",
+        emoji:"💧",
+        label:"یەک گڵاس ئاو بخۆ",
+        group:"نیوەڕۆ"
+    },
+
+    {
+        id:"walk",
+        emoji:"🚶",
+        label:"١٠–١٥ خولەک پیاسە",
+        group:"نیوەڕۆ"
+    },
+
+    {
+        id:"work",
+        emoji:"🎯",
+        label:"کار / خوێندن — ٢٥ خولەک",
+        group:"نیوەڕۆ"
+    },
+
+
+    {
+        id:"asr",
+        emoji:"🕌",
+        label:"نوێژی عەسر بکە",
+        group:"دوای نیوەڕۆ"
+    },
+
+    {
+        id:"study",
+        emoji:"📚",
+        label:"فێربوون — ٣٠ خولەک",
+        group:"دوای نیوەڕۆ"
+    },
+
+    {
+        id:"tidy",
+        emoji:"🧹",
+        label:"ڕێکخستنی ژوور — ١٠ خولەک",
+        group:"دوای نیوەڕۆ"
+    },
+
+
+    {
+        id:"maghrib",
+        emoji:"🕌",
+        label:"نوێژی مەغریب بکە",
+        group:"ئێوارە"
+    },
+
+    {
+        id:"pill_evening",
+        emoji:"💊",
+        label:"حەبەکانی ئێوارە",
+        group:"ئێوارە"
+    },
+
+    {
+        id:"dinner",
+        emoji:"🍽️",
+        label:"نانی ئێوارە",
+        group:"ئێوارە"
+    },
+
+    {
+        id:"water3",
+        emoji:"💧",
+        label:"ئاو بخۆ",
+        group:"ئێوارە"
+    },
+
+    {
+        id:"family",
+        emoji:"👨‍👩‍👦",
+        label:"کاتی خێزان / ئارامگرتن",
+        group:"ئێوارە"
+    },
+
+
+    {
+        id:"isha",
+        emoji:"🕌",
+        label:"نوێژی عیشا بکە",
+        group:"شەو"
+    },
+
+    {
+        id:"pill_night",
+        emoji:"💊",
+        label:"حەبەکانی شەو",
+        group:"شەو"
+    },
+
+    {
+        id:"brush2",
+        emoji:"🪥",
+        label:"ددان شۆردن",
+        group:"شەو"
+    },
+
+    {
+        id:"book2",
+        emoji:"📖",
+        label:"١٠ خولەک کتێب بخوێنەوە",
+        group:"شەو"
+    },
+
+    {
+        id:"phoneoff",
+        emoji:"📱",
+        label:"مۆبایل دابخە",
+        group:"شەو"
+    },
+
+    {
+        id:"eval",
+        emoji:"📝",
+        label:"هەڵسەنگاندنی ڕۆژ ⭐",
+        group:"شەو"
+    },
+
+    {
+        id:"plan",
+        emoji:"🎯",
+        label:"ئامادەکردنی سبەی",
+        group:"شەو"
+    },
+
+    {
+        id:"sleep",
+        emoji:"😴",
+        label:"کاتی خەوتن",
+        group:"شەو"
+    }
+
+];
+
+
+/* =====================================================
+   STORAGE
+===================================================== */
+
+const STORAGE_KEY =
+    "dayflow_completed_final";
+
+
+let completed =
+    new Set();
+
+
+/*
+   هەڵگرتنی ڕۆژی ئێستا
+
+   ئەمە گرنگە چونکە ڕۆژی نوێ
+   دەبێت لە سەرەتا دەست پێ بکات.
+*/
+
+function todayKey(){
+
+    const now = new Date();
+
+    return (
+        now.getFullYear() +
+        "-" +
+        String(
+            now.getMonth()+1
+        ).padStart(2,"0") +
+        "-" +
+        String(
+            now.getDate()
+        ).padStart(2,"0")
+    );
+
+}
+
+
+function loadState(){
+
+    try{
+
+        const saved =
+            JSON.parse(
+                localStorage.getItem(
+                    STORAGE_KEY
+                )
+            );
+
+
+        if(
+            saved &&
+            saved.date === todayKey() &&
+            Array.isArray(saved.tasks)
+        ){
+
+            completed =
+                new Set(saved.tasks);
+
+        }else{
+
+            completed =
+                new Set();
+
+        }
+
+    }catch(error){
+
+        completed =
+            new Set();
+
+    }
+
+}
+
+
+function saveState(){
+
+    localStorage.setItem(
+
+        STORAGE_KEY,
+
+        JSON.stringify({
+
+            date:todayKey(),
+
+            tasks:[
+                ...completed
+            ]
+
+        })
+
+    );
+
+}
+
+
+/* =====================================================
+   ئەرکی ئێستا
+===================================================== */
+
+function getCurrentTask(){
+
+    for(
+        let i = 0;
+        i < TASKS.length;
+        i++
+    ){
+
+        if(
+            !completed.has(
+                TASKS[i].id
+            )
+        ){
+
+            return TASKS[i];
+
+        }
+
+    }
+
+    return null;
+
+}
+
+
+/* =====================================================
+   پڕۆگرێس
+===================================================== */
+
+function updateProgress(){
+
+    const total =
+        TASKS.length;
+
+    const done =
+        completed.size;
+
+    const percent =
+        Math.round(
+            (done / total) * 100
+        );
+
+
+    document.getElementById(
+        "progressFill"
+    ).style.width =
+        percent + "%";
+
+
+    document.getElementById(
+        "progressText"
+    ).textContent =
+        percent + "٪";
+
+}
+
+
+/* =====================================================
+   رەندەرکردنی تەنها یەک ئەرک
+===================================================== */
+
+function renderTask(){
+
+    const area =
+        document.getElementById(
+            "taskArea"
+        );
+
+
+    updateProgress();
+
+
+    const task =
+        getCurrentTask();
+
+
+    /* =========================
+       هەموو ئەرکەکان تەواو
+    ========================= */
+
+    if(!task){
+
+        area.innerHTML = `
+
+            <div class="finished">
+
+                <div class="finished-icon">
+                    🎉
+                </div>
+
+                <div class="finished-title">
+                    هەموو ئەرکەکان تەواو بوون!
+                </div>
+
+                <div class="finished-text">
+                    زۆر باش بوویت 💪
+                    <br>
+                    ئەمڕۆت بە سەرکەوتوویی تەواو کرد.
+                </div>
+
+            </div>
+
+        `;
+
+        showReport();
+
+        return;
+
+    }
+
+
+    document.getElementById(
+        "reportArea"
+    ).innerHTML = "";
+
+
+    const number =
+        completed.size + 1;
+
+
+    /*
+       تەنها یەک task-card
+       لێرە دروست دەکرێت.
+    */
+
+    area.innerHTML = `
+
+        <div class="task-card">
+
+            <div class="task-number">
+                ئەرکی ${number} لە ${TASKS.length}
+            </div>
+
+            <div class="task-emoji">
+                ${task.emoji}
+            </div>
+
+            <div class="task-group">
+                ${task.group}
+            </div>
+
+            <div class="task-text">
+                ${task.label}
+            </div>
+
+            <button
+                type="button"
+                class="complete-btn"
+                id="completeBtn">
+
+                ✅ ئەنجامم دا
+
+            </button>
+
+        </div>
+
+    `;
+
+
+    document.getElementById(
+        "completeBtn"
+    ).onclick =
+        completeTask;
+
+}
+
+
+/* =====================================================
+   تەواوکردنی ئەرک
+===================================================== */
+
+function completeTask(){
+
+    const task =
+        getCurrentTask();
+
+
+    if(!task){
+
+        return;
+
+    }
+
+
+    /*
+       تەنها ئەرکی ئێستا زیاد دەکەین
+    */
+
+    completed.add(
+        task.id
+    );
+
+
+    saveState();
+
+
+    /*
+       زکر پیشان بدە
+    */
+
+    showDhikr();
+
+
+    /*
+       دوای 350ms ئەرکی دواتر
+       پیشان دەدرێت
+    */
+
+    setTimeout(
+
+        function(){
+
+            renderTask();
+
+        },
+
+        350
+
+    );
+
+}
+
+
+/* =====================================================
+   ڕاپۆرتی کۆتایی
+===================================================== */
+
+function showReport(){
+
+    const total =
+        TASKS.length;
+
+    const done =
+        completed.size;
+
+    const percent =
+        Math.round(
+            (done / total) * 100
+        );
+
+
+    document.getElementById(
+        "reportArea"
+    ).innerHTML = `
+
+        <div class="report-card">
+
+            <div class="report-icon">
+                📊
+            </div>
+
+            <div class="report-title">
+                ڕاپۆرتی ڕۆژ
+            </div>
+
+            <div class="report-percent">
+                ${percent}٪
+            </div>
+
+            <div class="report-text">
+
+                ${done}
+                لە
+                ${total}
+                ئەرکەکانت تەواو کردووە.
+
+                <br><br>
+
+                🎉 زۆر باش بوویت!
+                <br>
+                💪 سبەی بەهێزتر دەست پێ بکەوە.
+
+            </div>
+
+            <button
+                type="button"
+                class="reset-btn"
+                id="resetBtn">
+
+                🔄 دەستپێکردنەوەی ڕۆژ
+
+            </button>
+
+        </div>
+
+    `;
+
+
+    document.getElementById(
+        "resetBtn"
+    ).onclick =
+        resetDay;
+
+}
+
+
+/* =====================================================
+   Reset
+===================================================== */
+
+function resetDay(){
+
+    const answer =
+        confirm(
+            "دڵنیایت دەتەوێت هەموو ئەرکەکان لە سەرەتا دەست پێ بکەیتەوە؟"
+        );
+
+
+    if(!answer){
+
+        return;
+
+    }
+
+
+    completed.clear();
+
+
+    saveState();
+
+
+    document.getElementById(
+        "reportArea"
+    ).innerHTML = "";
+
+
+    renderTask();
+
+}
+
+
+/* =====================================================
+   دەستپێکردنی ئەپ
+===================================================== */
+
+loadState();
+
+renderTask();
+
+
+})();
+
+</script>
+
+</body>
+</html>
