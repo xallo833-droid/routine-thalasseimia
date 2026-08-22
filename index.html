@@ -1,0 +1,2474 @@
+<!DOCTYPE html>
+<html lang="ckb" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+    <meta name="theme-color" content="#0f0e13">
+
+    <title>ڕۆتینەکانی ژیان - بەرەو خەونەکان</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family:
+                'Inter',
+                'Segoe UI',
+                Tahoma,
+                sans-serif;
+
+            background: #0f0e13;
+
+            background-image:
+                radial-gradient(
+                    ellipse at 20% 50%,
+                    rgba(72, 49, 212, 0.15) 0%,
+                    transparent 60%
+                ),
+                radial-gradient(
+                    ellipse at 80% 20%,
+                    rgba(120, 80, 220, 0.10) 0%,
+                    transparent 50%
+                ),
+                radial-gradient(
+                    ellipse at 50% 100%,
+                    rgba(40, 20, 120, 0.20) 0%,
+                    transparent 50%
+                );
+
+            min-height: 100vh;
+
+            display: flex;
+            justify-content: center;
+
+            padding: 20px 12px 40px;
+
+            color: white;
+        }
+
+        .container {
+            max-width: 580px;
+            width: 100%;
+
+            background: rgba(255,255,255,0.05);
+
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+
+            border-radius: 40px;
+
+            padding: 30px 24px 40px;
+
+            border: 1px solid rgba(255,255,255,0.08);
+
+            box-shadow:
+                0 40px 80px rgba(0,0,0,0.5),
+                inset 0 1px 0 rgba(255,255,255,0.05);
+
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: "";
+
+            position: absolute;
+
+            top: -50%;
+            left: -50%;
+
+            width: 200%;
+            height: 200%;
+
+            background:
+                radial-gradient(
+                    circle at 30% 20%,
+                    rgba(120,80,255,0.04),
+                    transparent 60%
+                );
+
+            pointer-events: none;
+        }
+
+        .glow-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            pointer-events: none;
+        }
+
+        .glow-orb-1 {
+            width: 200px;
+            height: 200px;
+
+            top: -60px;
+            right: -60px;
+
+            background: rgba(120,80,255,0.15);
+        }
+
+        .glow-orb-2 {
+            width: 150px;
+            height: 150px;
+
+            bottom: -40px;
+            left: -40px;
+
+            background: rgba(255,100,150,0.10);
+        }
+
+        h1 {
+            font-size: 30px;
+            text-align: center;
+
+            color: #fff;
+
+            font-weight: 700;
+
+            margin-bottom: 5px;
+
+            position: relative;
+            z-index: 2;
+        }
+
+        h1 .highlight {
+            background:
+                linear-gradient(
+                    135deg,
+                    #a78bfa,
+                    #818cf8
+                );
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subhead {
+            text-align: center;
+
+            color: rgba(255,255,255,0.4);
+
+            font-size: 13px;
+
+            margin-bottom: 20px;
+
+            padding-bottom: 14px;
+
+            border-bottom:
+                1px solid rgba(255,255,255,0.05);
+
+            position: relative;
+            z-index: 2;
+        }
+
+        /* DATE */
+
+        .today {
+            text-align: center;
+
+            color: rgba(255,255,255,0.35);
+
+            font-size: 12px;
+
+            margin-bottom: 15px;
+        }
+
+        /* PRAYER TIMES */
+
+        .prayer-time {
+            background:
+                rgba(255,255,255,0.04);
+
+            backdrop-filter: blur(10px);
+
+            padding: 12px;
+
+            border-radius: 20px;
+
+            margin-bottom: 24px;
+
+            border:
+                1px solid rgba(255,255,255,0.04);
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(5, 1fr);
+
+            gap: 6px;
+
+            position: relative;
+            z-index: 2;
+        }
+
+        .prayer-time span {
+            background:
+                rgba(255,255,255,0.03);
+
+            padding: 8px 4px;
+
+            border-radius: 14px;
+
+            text-align: center;
+
+            font-size: 10px;
+
+            color:
+                rgba(255,255,255,0.5);
+
+            border:
+                1px solid rgba(255,255,255,0.03);
+        }
+
+        .prayer-time span strong {
+            display: block;
+
+            margin-top: 4px;
+
+            color: #fff;
+
+            font-size: 12px;
+
+            font-weight: 600;
+        }
+
+        /* PROGRESS */
+
+        .progress-wrap {
+            background:
+                rgba(255,255,255,0.05);
+
+            border-radius: 40px;
+
+            height: 5px;
+
+            margin: 20px 0 7px;
+
+            overflow: hidden;
+
+            position: relative;
+            z-index: 2;
+        }
+
+        .progress-fill {
+            height: 100%;
+
+            width: 0%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #a78bfa,
+                    #818cf8,
+                    #6366f1
+                );
+
+            border-radius: 40px;
+
+            transition:
+                width 0.5s ease;
+
+            box-shadow:
+                0 0 20px
+                rgba(120,80,255,0.3);
+        }
+
+        .progress-label {
+            display: flex;
+
+            justify-content: space-between;
+
+            font-size: 11px;
+
+            color:
+                rgba(255,255,255,0.25);
+
+            margin-bottom: 18px;
+
+            position: relative;
+            z-index: 2;
+        }
+
+        /* GROUP */
+
+        .group-title {
+            color:
+                rgba(255,255,255,0.45);
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            margin:
+                24px 5px 10px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+        }
+
+        .group-title::after {
+            content: "";
+
+            height: 1px;
+
+            flex: 1;
+
+            background:
+                rgba(255,255,255,0.06);
+        }
+
+        /* TASK */
+
+        .task-card {
+            background:
+                rgba(255,255,255,0.04);
+
+            backdrop-filter: blur(10px);
+
+            border-radius: 24px;
+
+            padding: 17px 18px;
+
+            margin-bottom: 10px;
+
+            border:
+                1px solid rgba(255,255,255,0.04);
+
+            transition:
+                all 0.3s ease;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 12px;
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+        .task-card:hover {
+            background:
+                rgba(255,255,255,0.06);
+
+            transform: translateY(-1px);
+        }
+
+        .task-card.done {
+            opacity: 0.4;
+
+            background:
+                rgba(255,255,255,0.02);
+
+            border-color:
+                rgba(120,80,255,0.15);
+        }
+
+        .task-card.done .task-text {
+            text-decoration: line-through;
+
+            color:
+                rgba(255,255,255,0.2);
+        }
+
+        .task-text {
+            font-size: 15px;
+
+            font-weight: 500;
+
+            color:
+                rgba(255,255,255,0.85);
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            flex: 1;
+
+            min-width: 0;
+        }
+
+        .task-emoji {
+            font-size: 22px;
+
+            flex-shrink: 0;
+        }
+
+        .task-actions {
+            display: flex;
+
+            gap: 5px;
+
+            flex-shrink: 0;
+        }
+
+        /* BUTTONS */
+
+        .btn {
+            border: none;
+
+            padding: 8px 15px;
+
+            border-radius: 40px;
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition:
+                all 0.25s ease;
+
+            font-family: inherit;
+        }
+
+        .btn-success {
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(120,80,255,0.3),
+                    rgba(99,102,241,0.3)
+                );
+
+            color: #a78bfa;
+
+            border:
+                1px solid rgba(120,80,255,0.15);
+        }
+
+        .btn-success:hover {
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(120,80,255,0.5),
+                    rgba(99,102,241,0.5)
+                );
+
+            transform: scale(1.04);
+        }
+
+        .btn-danger {
+            background:
+                rgba(255,80,80,0.1);
+
+            color:
+                rgba(255,150,150,0.7);
+
+            border:
+                1px solid rgba(255,80,80,0.05);
+        }
+
+        .btn-danger:hover {
+            background:
+                rgba(255,80,80,0.2);
+
+            color: #ff6b6b;
+        }
+
+        /* TOAST */
+
+        .toast {
+            position: fixed;
+
+            bottom: 25px;
+            left: 50%;
+
+            transform:
+                translateX(-50%)
+                translateY(30px);
+
+            background:
+                rgba(20,18,30,0.96);
+
+            backdrop-filter: blur(30px);
+
+            color: #fff;
+
+            padding: 18px 25px;
+
+            border-radius: 25px;
+
+            z-index: 9999;
+
+            opacity: 0;
+
+            transition:
+                all 0.5s ease;
+
+            pointer-events: none;
+
+            text-align: center;
+
+            max-width: 92%;
+
+            border:
+                1px solid rgba(255,255,255,0.06);
+
+            box-shadow:
+                0 20px 60px rgba(0,0,0,0.6);
+        }
+
+        .toast.show {
+            opacity: 1;
+
+            transform:
+                translateX(-50%)
+                translateY(0);
+        }
+
+        .dhikr-text {
+            font-family:
+                'Amiri',
+                'Noto Naskh Arabic',
+                'Traditional Arabic',
+                serif;
+
+            direction: rtl;
+
+            text-align: center;
+
+            font-size: 29px;
+
+            font-weight: 700;
+
+            line-height: 1.8;
+
+            color: #fbbf24;
+        }
+
+        /* REPORT */
+
+        .report-card {
+            background:
+                rgba(255,255,255,0.04);
+
+            border:
+                1px solid rgba(255,255,255,0.06);
+
+            border-radius: 25px;
+
+            padding: 25px 20px;
+
+            margin-top: 20px;
+
+            text-align: center;
+        }
+
+        .report-icon {
+            font-size: 45px;
+        }
+
+        .report-title {
+            color: #fff;
+
+            font-size: 21px;
+
+            font-weight: 700;
+
+            margin-top: 5px;
+        }
+
+        .report-sub {
+            color:
+                rgba(255,255,255,0.35);
+
+            font-size: 12px;
+
+            margin-top: 5px;
+        }
+
+        .report-stats {
+            background:
+                rgba(255,255,255,0.03);
+
+            border-radius: 18px;
+
+            padding: 15px;
+
+            margin-top: 15px;
+        }
+
+        .report-percent {
+            font-size: 42px;
+
+            font-weight: 700;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #a78bfa,
+                    #818cf8
+                );
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .report-label {
+            color:
+                rgba(255,255,255,0.3);
+
+            font-size: 11px;
+        }
+
+        .report-badges {
+            display: flex;
+
+            justify-content: center;
+
+            gap: 8px;
+
+            margin-top: 12px;
+
+            flex-wrap: wrap;
+        }
+
+        .badge-done {
+            background:
+                rgba(120,80,255,0.15);
+
+            color: #a78bfa;
+
+            padding: 5px 14px;
+
+            border-radius: 30px;
+
+            font-size: 12px;
+        }
+
+        .badge-remain {
+            background:
+                rgba(255,80,80,0.1);
+
+            color: #ff6b6b;
+
+            padding: 5px 14px;
+
+            border-radius: 30px;
+
+            font-size: 12px;
+        }
+
+        .report-message {
+            color:
+                rgba(255,255,255,0.35);
+
+            font-size: 12px;
+
+            margin-top: 12px;
+        }
+
+        /* RESET */
+
+        .reset-container {
+            display: none;
+
+            text-align: center;
+
+            margin-top: 20px;
+        }
+
+        .reset-btn {
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(120,80,255,0.3),
+                    rgba(99,102,241,0.3)
+                );
+
+            color: #a78bfa;
+
+            border:
+                1px solid rgba(120,80,255,0.15);
+
+            padding: 13px 25px;
+
+            border-radius: 40px;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            font-family: inherit;
+
+            width: 100%;
+        }
+
+        .reset-sub {
+            color:
+                rgba(255,255,255,0.2);
+
+            font-size: 11px;
+
+            margin-top: 8px;
+        }
+
+        /* FOOTER */
+
+        .footer {
+            margin-top: 30px;
+
+            text-align: center;
+
+            border-top:
+                1px solid rgba(255,255,255,0.04);
+
+            padding-top: 22px;
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+        .dream-text {
+            font-size: 19px;
+
+            font-weight: 700;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #a78bfa,
+                    #818cf8,
+                    #6366f1
+                );
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .reminder {
+            font-size: 14px;
+
+            color:
+                rgba(255,255,255,0.4);
+
+            margin-top: 8px;
+        }
+
+        .strong {
+            font-size: 16px;
+
+            color:
+                rgba(255,255,255,0.6);
+
+            font-weight: 600;
+
+            margin-top: 4px;
+        }
+
+        .sleep-text {
+            font-size: 13px;
+
+            color:
+                rgba(255,255,255,0.25);
+
+            margin-top: 6px;
+        }
+
+        .credit {
+            font-size: 10px;
+
+            color:
+                rgba(255,255,255,0.12);
+
+            margin-top: 12px;
+        }
+
+        @media(max-width:480px) {
+
+            body {
+                padding: 10px 7px 30px;
+            }
+
+            .container {
+                padding:
+                    22px 14px 30px;
+
+                border-radius: 28px;
+            }
+
+            h1 {
+                font-size: 25px;
+            }
+
+            .prayer-time {
+                grid-template-columns:
+                    repeat(5,1fr);
+
+                padding: 8px 4px;
+            }
+
+            .prayer-time span {
+                font-size: 8px;
+                padding: 7px 2px;
+            }
+
+            .prayer-time span strong {
+                font-size: 10px;
+            }
+
+            .task-card {
+                padding: 14px;
+                border-radius: 19px;
+            }
+
+            .task-text {
+                font-size: 14px;
+            }
+
+            .task-emoji {
+                font-size: 20px;
+            }
+
+            .btn {
+                padding: 7px 11px;
+                font-size: 11px;
+            }
+
+            .dhikr-text {
+                font-size: 24px;
+            }
+
+            .dream-text {
+                font-size: 16px;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+    <!-- DHIKR TOAST -->
+
+    <div class="toast" id="dhikrToast">
+        <div class="dhikr-text" id="dhikrText"></div>
+    </div>
+
+
+    <div class="container">
+
+        <div class="glow-orb glow-orb-1"></div>
+        <div class="glow-orb glow-orb-2"></div>
+
+
+        <h1>
+            🌙
+            <span class="highlight">
+                ڕۆتینەکانی ژیان
+            </span>
+        </h1>
+
+        <div class="subhead">
+            دانە بە دانە · بەرەو خەونەکان
+        </div>
+
+
+        <div class="today" id="todayDate">
+            --
+        </div>
+
+
+        <!-- PRAYER TIMES -->
+
+        <div class="prayer-time">
+
+            <span>
+                🌅 بەیانی
+                <strong id="fajrTime">--:--</strong>
+            </span>
+
+            <span>
+                ☀️ نیوەڕۆ
+                <strong id="dhuhrTime">--:--</strong>
+            </span>
+
+            <span>
+                🌤 عەسر
+                <strong id="asrTime">--:--</strong>
+            </span>
+
+            <span>
+                🌇 مەغریب
+                <strong id="maghribTime">--:--</strong>
+            </span>
+
+            <span>
+                🌙 عیشا
+                <strong id="ishaTime">--:--</strong>
+            </span>
+
+        </div>
+
+
+        <!-- PROGRESS -->
+
+        <div class="progress-wrap">
+            <div
+                class="progress-fill"
+                id="progressFill">
+            </div>
+        </div>
+
+        <div class="progress-label">
+            <span>پڕۆگرێس</span>
+            <span id="progressText">٠٪</span>
+        </div>
+
+
+        <!-- TASKS -->
+
+        <div id="taskList"></div>
+
+
+        <!-- REPORT -->
+
+        <div id="reportContainer"></div>
+
+
+        <!-- RESET -->
+
+        <div
+            class="reset-container"
+            id="resetContainer">
+
+            <button
+                class="reset-btn"
+                id="resetBtn">
+
+                🔄 دەستپێکردنەوەی ڕۆژ
+
+            </button>
+
+            <div class="reset-sub">
+                هەموو ئەرکەکان دەگەڕێتەوە سەرەتا بۆ ڕۆژی نوێ
+            </div>
+
+        </div>
+
+
+        <!-- FOOTER -->
+
+        <div class="footer">
+
+            <div class="dream-text">
+                ✨ من ژیان دەکەم بۆ بەدەستهێنانی خەونەکانم ✨
+            </div>
+
+            <div class="reminder">
+                💊 چارەسەرەکانم لە بیر ناکەم
+            </div>
+
+            <div class="strong">
+                💪 تۆ بەهێزیت!
+            </div>
+
+            <div class="sleep-text">
+                😴 زوو خەوتن بەشێکە لە تەندروستیم
+            </div>
+
+            <div class="credit">
+                run by Muhamad Surchi
+            </div>
+
+        </div>
+
+    </div>
+
+
+<script>
+
+/* =========================================================
+   ڕۆتینەکانی ژیان
+   ========================================================= */
+
+
+/* =========================================================
+   ZIKR
+   تەنها بە عەرەبی
+   ========================================================= */
+
+const DHIKR_LIST = [
+
+    "سُبْحَانَ اللَّهِ",
+
+    "الْحَمْدُ لِلَّهِ",
+
+    "لَا إِلَٰهَ إِلَّا اللَّهُ",
+
+    "اللَّهُ أَكْبَرُ",
+
+    "لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ",
+
+    "سُبْحَانَ اللَّهِ وَبِحَمْدِهِ",
+
+    "أَسْتَغْفِرُ اللَّهَ",
+
+    "سُبْحَانَ اللَّهِ الْعَظِيمِ",
+
+    "اللَّهُمَّ صَلِّ وَسَلِّمْ عَلَى مُحَمَّدٍ",
+
+    "لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ"
+
+];
+
+
+let lastDhikrIndex = -1;
+
+
+function showDhikr() {
+
+    let index;
+
+    do {
+
+        index =
+            Math.floor(
+                Math.random() *
+                DHIKR_LIST.length
+            );
+
+    } while (
+        index === lastDhikrIndex &&
+        DHIKR_LIST.length > 1
+    );
+
+    lastDhikrIndex = index;
+
+
+    const toast =
+        document.getElementById(
+            "dhikrToast"
+        );
+
+    const text =
+        document.getElementById(
+            "dhikrText"
+        );
+
+
+    text.textContent =
+        DHIKR_LIST[index];
+
+
+    toast.classList.add("show");
+
+
+    clearTimeout(
+        window.dhikrTimer
+    );
+
+
+    window.dhikrTimer =
+        setTimeout(() => {
+
+            toast.classList.remove("show");
+
+        }, 4000);
+
+}
+
+
+/* =========================================================
+   PRAYER TIMES
+   هەولێر
+   Latitude: 36.1911
+   Longitude: 44.0092
+   Timezone: UTC+3
+   ========================================================= */
+
+const ERBIL_LAT = 36.1911;
+const ERBIL_LNG = 44.0092;
+
+const TIMEZONE = 3;
+
+
+/* Degree -> Radian */
+
+function degToRad(deg) {
+    return deg * Math.PI / 180;
+}
+
+
+/* Radian -> Degree */
+
+function radToDeg(rad) {
+    return rad * 180 / Math.PI;
+}
+
+
+/*
+    Solar calculations
+*/
+
+function solarData(date) {
+
+    const start =
+        new Date(
+            date.getFullYear(),
+            0,
+            0
+        );
+
+    const diff =
+        date - start;
+
+    const day =
+        Math.floor(
+            diff /
+            (1000 * 60 * 60 * 24)
+        );
+
+
+    /*
+        Fractional year
+    */
+
+    const gamma =
+        2 * Math.PI / 365 *
+        (day - 1);
+
+
+    /*
+        Equation of time
+    */
+
+    const eqTime =
+        229.18 *
+        (
+            0.000075
+            + 0.001868 * Math.cos(gamma)
+            - 0.032077 * Math.sin(gamma)
+            - 0.014615 * Math.cos(2 * gamma)
+            - 0.040849 * Math.sin(2 * gamma)
+        );
+
+
+    /*
+        Solar declination
+    */
+
+    const decl =
+        0.006918
+        - 0.399912 * Math.cos(gamma)
+        + 0.070257 * Math.sin(gamma)
+        - 0.006758 * Math.cos(2 * gamma)
+        + 0.000907 * Math.sin(2 * gamma)
+        - 0.002697 * Math.cos(3 * gamma)
+        + 0.00148 * Math.sin(3 * gamma);
+
+
+    return {
+        eqTime,
+        decl
+    };
+
+}
+
+
+/*
+    Solar noon
+*/
+
+function solarNoon(date) {
+
+    const data =
+        solarData(date);
+
+    return (
+        720
+        - 4 * ERBIL_LNG
+        - data.eqTime
+        + TIMEZONE * 60
+    );
+
+}
+
+
+/*
+    Sunrise / sunset style hour
+*/
+
+function hourAngle(
+    date,
+    altitude
+) {
+
+    const data =
+        solarData(date);
+
+    const lat =
+        degToRad(ERBIL_LAT);
+
+    const decl =
+        data.decl;
+
+
+    const alt =
+        degToRad(altitude);
+
+
+    const cosH =
+        (
+            Math.sin(alt)
+            -
+            Math.sin(lat) *
+            Math.sin(decl)
+        )
+        /
+        (
+            Math.cos(lat) *
+            Math.cos(decl)
+        );
+
+
+    if (cosH < -1) {
+        return 180;
+    }
+
+    if (cosH > 1) {
+        return 0;
+    }
+
+
+    return radToDeg(
+        Math.acos(cosH)
+    );
+
+}
+
+
+/*
+    Time from solar noon
+*/
+
+function solarTime(
+    date,
+    altitude,
+    morning = true
+) {
+
+    const noon =
+        solarNoon(date);
+
+    const angle =
+        hourAngle(
+            date,
+            altitude
+        );
+
+
+    if (morning) {
+
+        return noon -
+            angle * 4;
+
+    } else {
+
+        return noon +
+            angle * 4;
+
+    }
+
+}
+
+
+/*
+    Asr
+    Shafi = shadow factor 1
+*/
+
+function asrTime(date) {
+
+    const data =
+        solarData(date);
+
+    const lat =
+        degToRad(ERBIL_LAT);
+
+    const decl =
+        data.decl;
+
+
+    const shadow =
+        1;
+
+
+    const angle =
+        -radToDeg(
+            Math.atan(
+                1 /
+                (
+                    shadow +
+                    Math.tan(
+                        Math.abs(
+                            lat - decl
+                        )
+                    )
+                )
+            )
+        );
+
+
+    const noon =
+        solarNoon(date);
+
+
+    const ha =
+        hourAngle(
+            date,
+            angle
+        );
+
+
+    return noon + ha * 4;
+
+}
+
+
+/*
+    Convert minutes to HH:MM
+*/
+
+function formatPrayerTime(minutes) {
+
+    minutes =
+        Math.round(minutes);
+
+
+    minutes =
+        (
+            minutes % 1440
+            + 1440
+        ) % 1440;
+
+
+    const h =
+        Math.floor(
+            minutes / 60
+        );
+
+    const m =
+        minutes % 60;
+
+
+    return (
+        String(h).padStart(2, "0")
+        +
+        ":"
+        +
+        String(m).padStart(2, "0")
+    );
+
+}
+
+
+/*
+    Get all prayer times
+*/
+
+function getPrayerTimes() {
+
+    const date =
+        new Date();
+
+
+    /*
+        Fajr
+        18 degrees
+    */
+
+    const fajr =
+        solarTime(
+            date,
+            -18,
+            true
+        );
+
+
+    /*
+        Dhuhr
+    */
+
+    const dhuhr =
+        solarNoon(date);
+
+
+    /*
+        Asr
+        Shafi
+    */
+
+    const asr =
+        asrTime(date);
+
+
+    /*
+        Maghrib
+        Sun altitude approximately -0.833°
+    */
+
+    const maghrib =
+        solarTime(
+            date,
+            -0.833,
+            false
+        );
+
+
+    /*
+        Isha
+        18 degrees
+    */
+
+    const isha =
+        solarTime(
+            date,
+            -18,
+            false
+        );
+
+
+    return {
+
+        fajr:
+            formatPrayerTime(fajr),
+
+        dhuhr:
+            formatPrayerTime(dhuhr),
+
+        asr:
+            formatPrayerTime(asr),
+
+        maghrib:
+            formatPrayerTime(maghrib),
+
+        isha:
+            formatPrayerTime(isha)
+
+    };
+
+}
+
+
+/*
+    Update prayer times
+*/
+
+function updatePrayerTimes() {
+
+    const times =
+        getPrayerTimes();
+
+
+    document.getElementById(
+        "fajrTime"
+    ).textContent =
+        times.fajr;
+
+
+    document.getElementById(
+        "dhuhrTime"
+    ).textContent =
+        times.dhuhr;
+
+
+    document.getElementById(
+        "asrTime"
+    ).textContent =
+        times.asr;
+
+
+    document.getElementById(
+        "maghribTime"
+    ).textContent =
+        times.maghrib;
+
+
+    document.getElementById(
+        "ishaTime"
+    ).textContent =
+        times.isha;
+
+}
+
+
+/* =========================================================
+   DATE
+   ========================================================= */
+
+function updateDate() {
+
+    const now =
+        new Date();
+
+
+    const dateText =
+        now.toLocaleDateString(
+            "ckb-IQ",
+            {
+                weekday: "long",
+                year: "numeric",
+                month: "long",
+                day: "numeric"
+            }
+        );
+
+
+    document.getElementById(
+        "todayDate"
+    ).textContent =
+        dateText;
+
+}
+
+
+/* =========================================================
+   TASKS
+   ========================================================= */
+
+const TASKS = [
+
+    {
+        id: "wake",
+        emoji: "🌞",
+        label: "بەیانی باش! زەردەخەنە بکە",
+        group: "بەیانی"
+    },
+
+    {
+        id: "shower1",
+        emoji: "🚿",
+        label: "خۆشوشتن",
+        group: "بەیانی"
+    },
+
+    {
+        id: "brush1",
+        emoji: "🪥",
+        label: "ددان شۆردن",
+        group: "بەیانی"
+    },
+
+    {
+        id: "water1",
+        emoji: "💧",
+        label: "یەک گڵاس ئاو",
+        group: "بەیانی"
+    },
+
+    {
+        id: "bed",
+        emoji: "🛏️",
+        label: "جێخەو ڕێکخستن",
+        group: "بەیانی"
+    },
+
+    {
+        id: "fajr",
+        emoji: "🕌",
+        label: "نوێژی بەیانی",
+        group: "بەیانی"
+    },
+
+    {
+        id: "pill_morning",
+        emoji: "💊",
+        label: "حەبەکانی بەیانی",
+        group: "بەیانی"
+    },
+
+    {
+        id: "breakfast",
+        emoji: "🍳",
+        label: "نانی بەیانی",
+        group: "بەیانی"
+    },
+
+    {
+        id: "book1",
+        emoji: "📖",
+        label: "کتێب — ١٠–٢٠ خولەک",
+        group: "بەیانی"
+    },
+
+    {
+        id: "sport",
+        emoji: "🏃",
+        label: "وەرزش — ٢٠–٣٠ خولەک",
+        group: "بەیانی"
+    },
+
+    {
+        id: "cleanup",
+        emoji: "🧼",
+        label: "پاکبوونەوە و ئامادەبوون",
+        group: "بەیانی"
+    },
+
+
+    {
+        id: "dhuhr",
+        emoji: "🕌",
+        label: "نوێژی نیوەڕۆ",
+        group: "نیوەڕۆ"
+    },
+
+    {
+        id: "pill_noon",
+        emoji: "💊",
+        label: "حەبەکانی نیوەڕۆ",
+        group: "نیوەڕۆ"
+    },
+
+    {
+        id: "lunch",
+        emoji: "🍛",
+        label: "نانی نیوەڕۆ",
+        group: "نیوەڕۆ"
+    },
+
+    {
+        id: "water2",
+        emoji: "💧",
+        label: "یەک گڵاس ئاو",
+        group: "نیوەڕۆ"
+    },
+
+    {
+        id: "walk",
+        emoji: "🚶",
+        label: "١٠–١٥ خولەک پیاسە",
+        group: "نیوەڕۆ"
+    },
+
+    {
+        id: "work",
+        emoji: "🎯",
+        label: "کار / خوێندن — ٢٥ خولەک",
+        group: "نیوەڕۆ"
+    },
+
+
+    {
+        id: "asr",
+        emoji: "🕌",
+        label: "نوێژی عەسر",
+        group: "دوای نیوەڕۆ"
+    },
+
+    {
+        id: "study",
+        emoji: "📚",
+        label: "فێربوون — ٣٠ خولەک",
+        group: "دوای نیوەڕۆ"
+    },
+
+    {
+        id: "tidy",
+        emoji: "🧹",
+        label: "ڕێکخستنی ژوور — ١٠ خولەک",
+        group: "دوای نیوەڕۆ"
+    },
+
+
+    {
+        id: "maghrib",
+        emoji: "🕌",
+        label: "نوێژی مەغریب",
+        group: "ئێوارە"
+    },
+
+    {
+        id: "pill_evening",
+        emoji: "💊",
+        label: "حەبەکانی ئێوارە",
+        group: "ئێوارە"
+    },
+
+    {
+        id: "dinner",
+        emoji: "🍽️",
+        label: "نانی ئێوارە",
+        group: "ئێوارە"
+    },
+
+    {
+        id: "water3",
+        emoji: "💧",
+        label: "ئاو",
+        group: "ئێوارە"
+    },
+
+    {
+        id: "family",
+        emoji: "👨‍👩‍👦",
+        label: "کاتی خێزان / ئارامگرتن",
+        group: "ئێوارە"
+    },
+
+
+    {
+        id: "isha",
+        emoji: "🕌",
+        label: "نوێژی عیشا",
+        group: "شەو"
+    },
+
+    {
+        id: "pill_night",
+        emoji: "💊",
+        label: "حەبەکانی شەو",
+        group: "شەو"
+    },
+
+    {
+        id: "brush2",
+        emoji: "🪥",
+        label: "ددان شۆردن",
+        group: "شەو"
+    },
+
+    {
+        id: "book2",
+        emoji: "📖",
+        label: "١٠ خولەک کتێب",
+        group: "شەو"
+    },
+
+    {
+        id: "phoneoff",
+        emoji: "📱",
+        label: "مۆبایل دابخە",
+        group: "شەو"
+    },
+
+    {
+        id: "eval",
+        emoji: "📝",
+        label: "هەڵسەنگاندنی ڕۆژ ⭐",
+        group: "شەو"
+    },
+
+    {
+        id: "plan",
+        emoji: "🎯",
+        label: "ئامادەکردنی سبەی",
+        group: "شەو"
+    },
+
+    {
+        id: "sleep",
+        emoji: "😴",
+        label: "کاتی خەوتن",
+        group: "شەو"
+    }
+
+];
+
+
+/* =========================================================
+   STORAGE
+   ========================================================= */
+
+let completed = new Set();
+
+const STORAGE_KEY =
+    "dayflow_completed";
+
+const DATE_KEY =
+    "dayflow_date";
+
+
+/*
+    Today's date ID
+*/
+
+function getTodayKey() {
+
+    const d =
+        new Date();
+
+    return (
+        d.getFullYear()
+        +
+        "-"
+        +
+        String(
+            d.getMonth() + 1
+        ).padStart(2, "0")
+        +
+        "-"
+        +
+        String(
+            d.getDate()
+        ).padStart(2, "0")
+    );
+
+}
+
+
+/*
+    Load
+*/
+
+function loadState() {
+
+    const today =
+        getTodayKey();
+
+    const savedDate =
+        localStorage.getItem(
+            DATE_KEY
+        );
+
+
+    /*
+        ئەگەر ڕۆژ گۆڕابێت
+        ئەرکەکان خۆکارانە reset دەبن
+    */
+
+    if (savedDate !== today) {
+
+        completed =
+            new Set();
+
+        localStorage.setItem(
+            DATE_KEY,
+            today
+        );
+
+        saveState();
+
+        return;
+    }
+
+
+    try {
+
+        const raw =
+            localStorage.getItem(
+                STORAGE_KEY
+            );
+
+
+        if (raw) {
+
+            const arr =
+                JSON.parse(raw);
+
+
+            if (Array.isArray(arr)) {
+
+                completed =
+                    new Set(arr);
+
+                return;
+
+            }
+
+        }
+
+    } catch (error) {
+
+        console.log(
+            "Storage error:",
+            error
+        );
+
+    }
+
+
+    completed =
+        new Set();
+
+}
+
+
+/*
+    Save
+*/
+
+function saveState() {
+
+    localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(
+            [...completed]
+        )
+    );
+
+    localStorage.setItem(
+        DATE_KEY,
+        getTodayKey()
+    );
+
+}
+
+
+/* =========================================================
+   TASK ACTION
+   ========================================================= */
+
+function completeTask(id) {
+
+    if (completed.has(id)) {
+        return;
+    }
+
+
+    completed.add(id);
+
+    saveState();
+
+    renderTasks();
+
+    updateProgress();
+
+    showDhikr();
+
+
+    /*
+        تەواوبوونی هەموو کارەکان
+    */
+
+    if (
+        completed.size ===
+        TASKS.length
+    ) {
+
+        setTimeout(() => {
+
+            alert(
+                "🎉 پیرۆزە! هەموو ئەرکەکانی ئەمڕۆت تەواو کرد!"
+            );
+
+        }, 300);
+
+    }
+
+}
+
+
+/*
+    Undo
+*/
+
+function undoTask(id) {
+
+    completed.delete(id);
+
+    saveState();
+
+    renderTasks();
+
+    updateProgress();
+
+}
+
+
+/* =========================================================
+   RENDER TASKS
+   ========================================================= */
+
+function renderTasks() {
+
+    const container =
+        document.getElementById(
+            "taskList"
+        );
+
+
+    container.innerHTML = "";
+
+
+    let currentGroup = "";
+
+
+    TASKS.forEach(
+        task => {
+
+            /*
+                Group title
+            */
+
+            if (
+                task.group !==
+                currentGroup
+            ) {
+
+                currentGroup =
+                    task.group;
+
+
+                const group =
+                    document.createElement(
+                        "div"
+                    );
+
+                group.className =
+                    "group-title";
+
+
+                group.textContent =
+                    currentGroup;
+
+
+                container.appendChild(
+                    group
+                );
+
+            }
+
+
+            /*
+                Card
+            */
+
+            const card =
+                document.createElement(
+                    "div"
+                );
+
+
+            const isDone =
+                completed.has(
+                    task.id
+                );
+
+
+            card.className =
+                "task-card" +
+                (
+                    isDone
+                        ? " done"
+                        : ""
+                );
+
+
+            /*
+                Text
+            */
+
+            const text =
+                document.createElement(
+                    "div"
+                );
+
+            text.className =
+                "task-text";
+
+
+            text.innerHTML =
+                `
+                <span class="task-emoji">
+                    ${task.emoji}
+                </span>
+
+                <span>
+                    ${task.label}
+                </span>
+                `;
+
+
+            /*
+                Actions
+            */
+
+            const actions =
+                document.createElement(
+                    "div"
+                );
+
+            actions.className =
+                "task-actions";
+
+
+            if (!isDone) {
+
+                const doneBtn =
+                    document.createElement(
+                        "button"
+                    );
+
+                doneBtn.className =
+                    "btn btn-success";
+
+                doneBtn.textContent =
+                    "✓ تەواو";
+
+                doneBtn.onclick =
+                    () =>
+                        completeTask(
+                            task.id
+                        );
+
+
+                actions.appendChild(
+                    doneBtn
+                );
+
+            } else {
+
+                const undoBtn =
+                    document.createElement(
+                        "button"
+                    );
+
+                undoBtn.className =
+                    "btn btn-danger";
+
+                undoBtn.textContent =
+                    "↩ گەڕاندنەوە";
+
+                undoBtn.onclick =
+                    () =>
+                        undoTask(
+                            task.id
+                        );
+
+
+                actions.appendChild(
+                    undoBtn
+                );
+
+            }
+
+
+            card.appendChild(text);
+
+            card.appendChild(actions);
+
+            container.appendChild(card);
+
+        }
+    );
+
+
+    updateReport();
+
+
+    /*
+        Show reset button
+    */
+
+    const reset =
+        document.getElementById(
+            "resetContainer"
+        );
+
+
+    if (completed.size > 0) {
+
+        reset.style.display =
+            "block";
+
+    } else {
+
+        reset.style.display =
+            "none";
+
+    }
+
+}
+
+
+/* =========================================================
+   PROGRESS
+   ========================================================= */
+
+function updateProgress() {
+
+    const total =
+        TASKS.length;
+
+    const done =
+        completed.size;
+
+
+    const percent =
+        Math.round(
+            (done / total) * 100
+        );
+
+
+    document.getElementById(
+        "progressFill"
+    ).style.width =
+        percent + "%";
+
+
+    /*
+        Kurdish/Arabic digits
+    */
+
+    const arabicPercent =
+        String(percent)
+            .replace(
+                /\d/g,
+                d =>
+                    "٠١٢٣٤٥٦٧٨٩"[d]
+            );
+
+
+    document.getElementById(
+        "progressText"
+    ).textContent =
+        arabicPercent + "٪";
+
+}
+
+
+/* =========================================================
+   REPORT
+   ========================================================= */
+
+function updateReport() {
+
+    const container =
+        document.getElementById(
+            "reportContainer"
+        );
+
+
+    const total =
+        TASKS.length;
+
+    const done =
+        completed.size;
+
+
+    if (done === 0) {
+
+        container.innerHTML = "";
+
+        return;
+
+    }
+
+
+    const percent =
+        Math.round(
+            (done / total) * 100
+        );
+
+
+    let message;
+
+
+    if (done === total) {
+
+        message =
+            "🎉 ئەمڕۆ تەواوی ئەرکەکانت تەواو کردووە! زۆر باش بوویت!";
+
+    } else if (percent >= 75) {
+
+        message =
+            "🔥 زۆر نزیکیت لە تەواوکردن! بەردەوام بە.";
+
+    } else if (percent >= 50) {
+
+        message =
+            "💪 نیوەی ڕۆژەکەت بەسەرکەوتوویی تێپەڕاندووە.";
+
+    } else {
+
+        message =
+            "🌱 دەستپێکی باشە. هەنگاو بە هەنگاو بەردەوام بە.";
+
+    }
+
+
+    container.innerHTML = `
+
+        <div class="report-card">
+
+            <div class="report-icon">
+                📊
+            </div>
+
+            <div class="report-title">
+                ڕاپۆرتی ڕۆژ
+            </div>
+
+            <div class="report-sub">
+                ئەمڕۆ ${done} لە ${total}
+                ئەرکت تەواو کردووە
+            </div>
+
+            <div class="report-stats">
+
+                <div class="report-percent">
+                    ${percent}%
+                </div>
+
+                <div class="report-label">
+                    پڕۆگرێسی ڕۆژ
+                </div>
+
+            </div>
+
+            <div class="report-badges">
+
+                <span class="badge-done">
+                    ✅ ${done} تەواو
+                </span>
+
+                <span class="badge-remain">
+                    ⏳ ${total - done} ماوە
+                </span>
+
+            </div>
+
+            <div class="report-message">
+                ${message}
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+function resetAllTasks() {
+
+    const confirmed =
+        confirm(
+            "دڵنیای کە دەتەوێت هەموو ئەرکەکان بۆ ئەمڕۆ بسڕیتەوە؟"
+        );
+
+
+    if (!confirmed) {
+        return;
+    }
+
+
+    completed.clear();
+
+    saveState();
+
+    renderTasks();
+
+    updateProgress();
+
+}
+
+
+/* =========================================================
+   BUTTON
+   ========================================================= */
+
+document.getElementById(
+    "resetBtn"
+).addEventListener(
+    "click",
+    resetAllTasks
+);
+
+
+/* =========================================================
+   START APP
+   ========================================================= */
+
+function init() {
+
+    loadState();
+
+    updateDate();
+
+    updatePrayerTimes();
+
+    renderTasks();
+
+    updateProgress();
+
+}
+
+
+/*
+    Start
+*/
+
+init();
+
+
+/*
+    Check every minute
+    بۆ ئەوەی کاتەکان و ڕۆژەکە نوێ بکرێتەوە
+*/
+
+setInterval(
+    () => {
+
+        updatePrayerTimes();
+
+        updateDate();
+
+
+        /*
+            ئەگەر ڕۆژ گۆڕا
+        */
+
+        const savedDate =
+            localStorage.getItem(
+                DATE_KEY
+            );
+
+        const today =
+            getTodayKey();
+
+
+        if (savedDate !== today) {
+
+            completed.clear();
+
+            saveState();
+
+            renderTasks();
+
+            updateProgress();
+
+        }
+
+    },
+    60000
+);
+
+</script>
+
+</body>
+</html>
